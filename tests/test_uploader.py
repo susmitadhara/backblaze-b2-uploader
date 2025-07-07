@@ -15,7 +15,8 @@ class TestUploader(unittest.TestCase):
         mock_bucket.upload_bytes.return_value = mock_uploaded
         mock_b2_api.return_value.get_bucket_by_name.return_value = mock_bucket
 
-        with patch('builtins.open', unittest.mock.mock_open(read_data=b"data")):
+        with patch('builtins.open', unittest.mock.mock_open(read_data=b"data")), \
+        patch('b2_uploader.uploader.get_public_url', return_value='https://f000.backblazeb2.com/file/my-bucket/dest/test.txt'):
             result = uploader.upload_file(
                 'test.txt', 'my-bucket', 'dest/test.txt', 'key-id', 'app-key'
             )
