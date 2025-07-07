@@ -21,9 +21,11 @@ class TestUploader(unittest.TestCase):
                 'test.txt', 'my-bucket', 'dest/test.txt', 'key-id', 'app-key'
             )
 
+
         self.assertEqual(result['file_name'], 'test.txt')
         self.assertEqual(result['file_id'], '123abc')
         self.assertIn('public_url', result)
+        self.assertEqual(result['public_url'], 'https://f000.backblazeb2.com/file/my-bucket/dest/test.txt')
 
     def test_get_public_url(self):
         url = uploader.get_public_url("my-bucket", "images/photo.jpg")

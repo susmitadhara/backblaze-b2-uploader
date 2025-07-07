@@ -20,7 +20,8 @@ def upload_file(local_path: str, bucket_name: str, dest_path: str, key_id: str, 
             'file_name': uploaded.file_name,
             'file_id': uploaded.file_id,
             'bucket_name': uploaded.bucket_name,
-            'upload_timestamp': uploaded.upload_timestamp
+            'upload_timestamp': uploaded.upload_timestamp,
+            'public_url': get_public_url(bucket_name, dest_path)
         }
     
 def get_public_url(bucket_name: str, file_path: str) -> str:
